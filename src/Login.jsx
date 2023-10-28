@@ -4,8 +4,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useAuthValue } from './AuthContext';
 import './LoginPage.css';
+import React from 'react';
 
 function Login() {
+  console.log('Login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');

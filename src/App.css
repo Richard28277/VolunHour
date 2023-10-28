@@ -69,7 +69,6 @@ button:hover {
 
 img {
   border-radius: 25px; /* Add rounded corners */
-  pointer-events: none; /* Prevents user downloads by disabling pointer events */
   user-select: none;
 }
 

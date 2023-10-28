@@ -10,6 +10,7 @@ import Events from './Events.jsx';
 import Loghours from './LogHours.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { getAuth } from "firebase/auth";
+import EventEntryForm from './EventEntryForm';
 
 function App() {
   const [user, setUser] = useState({});
@@ -36,7 +37,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/events" element={<Events />} />
           <Route path="/loghours/:eventName/:eventHours/:eventOrg" element={<Loghours />} />
-
+          <Route path="/create_event" element={<EventEntryForm />} />
         </Routes>
         <Footer />
       </div>

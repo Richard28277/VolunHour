@@ -4,6 +4,7 @@ import {useNavigate, Link} from 'react-router-dom'
 import {createUserWithEmailAndPassword, sendEmailVerification} from 'firebase/auth'
 import {useAuthValue} from './AuthContext'
 import './LoginPage.css';
+import React from 'react';
 
 function Register() {
   

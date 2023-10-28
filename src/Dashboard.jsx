@@ -30,14 +30,15 @@ const Dashboard = () => {
     return () => unsubscribe();
   }, []);
 
-  async function fetchData(email) {
+  async function fetchData() {
     try {
+      const token = await auth.currentUser.getIdToken(/* forceRefresh */ true);
       const response = await fetch('https://rich28277.pythonanywhere.com/api/dashboard', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: email }), // Serialize email as a JSON object
+        body: JSON.stringify({ user_id: token }), // Serialize email as a JSON object
       });
 
       if (response.ok) {
@@ -48,7 +49,7 @@ const Dashboard = () => {
           id: eventId,
           name: event.name,
           hours: event.hours,
-          organization: event.organization, // Include organization name
+          organization: event.organization,
         }));
 
         setData(eventHistory);
@@ -62,6 +63,57 @@ const Dashboard = () => {
       console.error(error);
     }
   }
+
+  const clearEvent = async (eventId) => {
+    try {
+      const token = await auth.currentUser.getIdToken(/* forceRefresh */ true);
+      const response = await fetch('https://rich28277.pythonanywhere.com/api/clear_history', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id: token,
+          event_key: eventId,
+        }),
+      });
+
+      if (response.ok) {
+        fetchData(); // Refresh the event data after clearing
+      } else {
+        throw new Error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const clearAllEvents = async () => {
+    const confirmed = window.confirm('Are you sure you want to clear all events?'); // Show confirmation dialog
+
+    if (confirmed) {
+      try {
+        const token = await auth.currentUser.getIdToken(/* forceRefresh */ true);
+        const response = await fetch('https://rich28277.pythonanywhere.com/api/clear_history', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: token,
+          }),
+        });
+
+        if (response.ok) {
+          fetchData(); // Refresh the event data after clearing all events
+        } else {
+          throw new Error(`Error: ${response.status}`);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
 
   return (
     <div className="dashboard">
@@ -77,20 +129,34 @@ const Dashboard = () => {
               <strong>Email:</strong> {user.email}
             </p>
             <h3>Event Information</h3>
-            <p>Total Hours: {totalHours}</p> {/* Display total hours */}
+            <p>Total Hours: {totalHours}</p>
             {data.length > 0 ? (
-              <ul>
-                {data.map((event, index) => (
-                  <li key={index}>
-                    <span><strong>{event.organization}</strong> {event.name} : </span> {/* Display organization */}
-                    <span>{event.hours} hours</span>
-                  </li>
-                ))}
-              </ul>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Organization</th>
+                    <th>Event Name</th>
+                    <th>Hours</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((event) => (
+                    <tr key={event.id}>
+                      <td>{event.organization}</td>
+                      <td>{event.name}</td>
+                      <td>{event.hours} hours</td>
+                      <td>
+                        <button onClick={() => clearEvent(event.id)}>Delete</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             ) : (
               <p>No event data available.</p>
             )}
-            
+            <button onClick={clearAllEvents}>Clear All Events</button>
           </div>
         </>
       ) : (
