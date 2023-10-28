@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useAuthValue } from './AuthContext';
 import './LoginPage.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function Login() {
   console.log('Login');
@@ -27,6 +27,17 @@ function Login() {
     setEmail('');
     setPassword('');
   };
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        window.location.href = '/dashboard';
+      }
+    });
+
+    // Make sure to unsubscribe from the observer when the component unmounts
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className="center">

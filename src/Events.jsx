@@ -6,25 +6,25 @@ const Events = () => {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-    if (!authUser) {
-      window.location.href = '/login';
-    } else {
-    const fetchEvents = async () => {
-      try {
-        const response = await fetch('https://rich28277.pythonanywhere.com/api/events');
-        if (response.ok) {
-          const data = await response.json();
-          setEvents(data);
-        } else {
-          throw new Error('Error: ' + response.status);
-        }
-      } catch (error) {
-        console.error('Error:', error);
+      if (!authUser) {
+        window.location.href = '/login';
+      } else {
+        const fetchEvents = async () => {
+          try {
+            const response = await fetch('https://rich28277.pythonanywhere.com/api/events');
+            if (response.ok) {
+              const data = await response.json();
+              setEvents(data);
+            } else {
+              throw new Error('Error: ' + response.status);
+            }
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        };
+        fetchEvents();
       }
-    };
-      fetchEvents();
-    }});
-    
+    });
   }, []);
 
   const handleButtonClick = (eventLink) => {
@@ -34,7 +34,7 @@ const Events = () => {
   return (
     <ul>
       {events.map((event) => (
-      <article key={event.id}>
+        <article key={event.id}>
           <h2>{event.name}</h2>
           <p><strong>VolunHour ID:</strong> {event.id}</p>
           <p><strong>Date:</strong> {event.date}</p>
@@ -44,7 +44,7 @@ const Events = () => {
           <p><strong>Participants:</strong> {event.participants}</p>
           <p><strong>Organization:</strong> {event.organization}</p>
           <button onClick={() => handleButtonClick(event.link)}>View Event</button>
-      </article>
+        </article>
       ))}
     </ul>
   );

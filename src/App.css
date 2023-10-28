@@ -1,5 +1,5 @@
 body {
-  background: #4286f4;
+  background:  #5596ff;
 }
 
 .App-logo {
@@ -28,6 +28,12 @@ body {
   margin: 0;
 }
 
+.table-row {
+  border-bottom: 5px solid #ccc; /* Add the desired border style */
+  border-radius: 5px;
+}
+
+
 .App-header a {
   color: #4286f4;
   text-decoration: none;
@@ -48,14 +54,14 @@ article {
   margin-left: 100px;
   margin-right: 100px;
   padding: 10px;
-  border-radius: 25px;
+  border-radius: 5px;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 button {
   padding: 10px;
   border-radius: 5px;
-  background-color: #0099ff;
+  background-color: #00cc3a !important;
   color: white;
   border: none;
   cursor: pointer;
@@ -74,9 +80,8 @@ img {
 
 @media screen and (max-width: 800px) {
   article {
-    width: 97%; /* The width is 100%, when the viewport is 800px or smaller */
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
     margin-left:0.1px !important;
-    padding: 10px;
     margin-right: 0.1px !important;
     align-items: center;
   }

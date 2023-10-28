@@ -142,7 +142,7 @@ const Dashboard = () => {
                 </thead>
                 <tbody>
                   {data.map((event) => (
-                    <tr key={event.id}>
+                    <tr key={event.id} className="table-row"> {/* Add a class to the table row */}
                       <td>{event.organization}</td>
                       <td>{event.name}</td>
                       <td>{event.hours} hours</td>

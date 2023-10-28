@@ -5,7 +5,7 @@ import React from 'react';
 function Footer() {
   return (
     <footer>
-        <p>&copy; 2023 VolunHour. All rights reserved.</p>
+        <p> VolunHour v1.0.0 </p>
     </footer>
   );
 }
