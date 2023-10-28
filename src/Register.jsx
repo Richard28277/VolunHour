@@ -39,9 +39,7 @@ function Register() {
               const userData = {
                 user_id: idToken,
                 user_name: name,
-                hours: 10,
                 event_history: [],
-                organization_names: [],
                 email_: email
               };
               
