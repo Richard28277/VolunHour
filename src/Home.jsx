@@ -35,6 +35,9 @@ class Home extends Component {
           <Link to="/create_event" style={{ textDecoration: 'none' }}> 
             <button>Create Event</button>
           </Link>
+          <Link to="/events" style={{ textDecoration: 'none' }}> 
+            <button>Find Events</button>
+          </Link>
         </section>
       </article>
     );

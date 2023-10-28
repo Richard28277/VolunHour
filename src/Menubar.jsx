@@ -34,7 +34,7 @@ function Menubar() {
           <li><a href="/">Home</a></li>
           <li><a href="/events">Events</a></li>
           <li><a href="/dashboard">Dashboard</a></li>
-          <li>{authenticated ? <a href="/" onClick={handleLogout}>Log out</a> : <a href="/Login">Log In</a>}</li>
+          <li>{authenticated ? <a href="/" onClick={handleLogout}>Log out</a> : <a href="/login">Log In</a>}</li>
         </ul>
       </nav>
     </header>
