@@ -1,6 +1,6 @@
-import './App.css';
+import '../App.css';
 import React, { useEffect, useState } from 'react';
-import { auth } from './firebase';
+import { auth } from '../firebase';
 
 function Menubar() {
   const [authenticated, setAuthenticated] = useState(false);

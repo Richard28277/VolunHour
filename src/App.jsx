@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Menubar from './Menubar.jsx';
-import Footer from './Footer.jsx';
-import Home from './Home.jsx';
-import Register from './Register.jsx';
-import Login from './Login.jsx';
-import Dashboard from './Dashboard.jsx';
-import Events from './Events.jsx';
-import Loghours from './LogHours.jsx';
+import Menubar from './Components/Menubar';
+import Footer from './Components/Footer';
+import Home from './Pages/Home.jsx';
+import Register from './Pages/Register.jsx';
+import Login from './Pages/Login.jsx';
+import Dashboard from './Pages/Dashboard.jsx';
+import Events from './Pages/Events.jsx';
+import Loghours from './Pages/LogHours.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { getAuth } from "firebase/auth";
-import EventEntryForm from './EventEntryForm';
+import EventEntryForm from './Pages/EventEntryForm';
 
 function App() {
   const [user, setUser] = useState({});

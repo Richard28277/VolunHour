@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { auth } from './firebase';
+import { auth } from '../firebase';
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);

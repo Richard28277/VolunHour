@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; // Assuming you're using React Router for routing
-import { auth } from './firebase';
+import { auth } from '../firebase';
 
 const LogHours = () => {
   const { eventName, eventHours, eventOrg } = useParams(); // Extract event name and hours from URL parameters

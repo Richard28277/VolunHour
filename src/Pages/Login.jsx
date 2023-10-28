@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { auth } from './firebase';
+import { auth } from '../firebase';
 import { useNavigate, Link } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useAuthValue } from './AuthContext';
+import { useAuthValue } from '../AuthContext';
 import './LoginPage.css';
 import React, { useEffect } from 'react';
 
