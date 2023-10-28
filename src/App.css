@@ -1,0 +1,85 @@
+body {
+  background: #4286f4;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+.App-header {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  max-width:1000px;
+  padding: 15px;
+  margin: 10px auto;
+}
+
+.App-header ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.App-header li {
+  margin: 0;
+}
+
+.App-header a {
+  color: #4286f4;
+  text-decoration: none;
+}
+
+h2 {
+  list-style-type: none;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+article {
+  margin-top: 10px;
+  align-items: center;
+  font-family: "Helvetica";
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+button {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #0099ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin:5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+button:hover {
+  background-color: #0077cc;
+}
+
+img {
+  border-radius: 25px; /* Add rounded corners */
+  pointer-events: none; /* Prevents user downloads by disabling pointer events */
+  user-select: none;
+}
+
+@media screen and (max-width: 800px) {
+  article {
+    width: 97%; /* The width is 100%, when the viewport is 800px or smaller */
+    margin-left:0.1px !important;
+    padding: 10px;
+    margin-right: 0.1px !important;
+    align-items: center;
+  }
+}
+
