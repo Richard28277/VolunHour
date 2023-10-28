@@ -1,17 +1,33 @@
-## Running React on Repl.it
+# VolunHour
 
-[React](https://reactjs.org/) is a popular JavaScript library for building user interfaces.
+**Author**: Richard Xu
+**Version**: 1.0.0
+**VolunHour** is a web application designed to simplify and streamline the process of tracking volunteer hours for both organizations and volunteers. By generating unique QR codes for volunteer events, it allows volunteers to effortlessly log their hours by scanning the code, eliminating the need for manual record-keeping.
 
-[Vite](https://vitejs.dev/) is a blazing fast frontend build tool that includes features like Hot Module Reloading (HMR), optimized builds, and TypeScript support out of the box.
+## Features
 
-Using the two in conjunction is one of the fastest ways to build a web app.
+- **Create Volunteer Activities**: Organizations can input event information such as the event name, date, and volunteer time to generate event-specific QR codes.
 
-### Getting Started
-- Hit run
-- Edit [App.jsx](#src/App.jsx) and watch it live update!
+- **Effortless Logging**: Volunteers can log their hours by simply scanning the QR code at the event site. The app automatically records event details and volunteer service hours in their account, making it convenient and efficient.
 
-By default, Replit runs the `dev` script, but you can configure it by changing the `run` field in the [configuration file](#.replit). Here are the vite docs for [serving production websites](https://vitejs.dev/guide/build.html)
+- **Progressive Web App (PWA)**: VolunHour is built as a Progressive Web App, making it accessible both as a mobile app and a website. Users can install it on their smartphones for a mobile experience.
 
-### Typescript
+- **Data Storage**: Volunteer records are securely stored in a Firebase Realtime Database in the cloud, ensuring data integrity and accessibility.
 
-Just rename any file from `.jsx` to `.tsx`. You can also try our [TypeScript Template](https://replit.com/@replit/React-TypeScript)
+- **User Authentication and Backend**: The app uses a Python Flask server for user authentication and backend functionalities, providing robust security and reliability.
+
+- **Community Engagement**: Ability for organizations to connect with volunteers by adding public events
+
+- **SQL Database**: Events and volunteer opportunities are stored in an SQL database, facilitating efficient data management.
+
+## Why VolunHour?
+
+The inspiration behind VolunHour came from the challenges of managing volunteer hours in a real-world volunteer organization. The app offers a practical solution to simplify this process, making it more organized and efficient. It is designed to save time for both volunteers and organizations and foster better connectivity within the volunteer community.
+
+## Technical Details
+
+VolunHour is built using React and JavaScript for the front end, with a Python Flask server handling user authentication and the backend. The app uses Firebase for real-time storage of user's volunteer records, and an SQL database for storing events and volunteer opportunities.
+
+## How to Use
+
+For detailed instructions on how to use VolunHour, please go to the project website: volunhour.vercel.app
