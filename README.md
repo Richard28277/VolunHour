@@ -1,7 +1,9 @@
 # VolunHour
 
 **Author**: Richard Xu
+
 **Version**: 1.0.0
+
 **VolunHour** is a web application designed to simplify and streamline the process of tracking volunteer hours for both organizations and volunteers. By generating unique QR codes for volunteer events, it allows volunteers to effortlessly log their hours by scanning the code, eliminating the need for manual record-keeping.
 
 ## Features
