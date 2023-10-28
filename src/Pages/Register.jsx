@@ -60,7 +60,7 @@ function Register() {
             }).catch(function(error) {
               console.log("error with create user account 66")
             });
-            navigate('/verify-email')
+            navigate('/dashboard')
           }).catch((err) => alert(err.message))
         })
         .catch(err => setError(err.message))

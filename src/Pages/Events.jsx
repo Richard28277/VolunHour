@@ -28,7 +28,7 @@ const Events = () => {
   }, []);
 
   const handleButtonClick = (eventLink) => {
-    window.location.href = eventLink;
+    setUrl(eventLink);
   };
 
   return (
