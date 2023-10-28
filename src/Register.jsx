@@ -40,8 +40,8 @@ function Register() {
                 user_id: idToken,
                 user_name: name,
                 hours: 10,
-                event_history: ['event1', 'event2'],
-                organization_names: ['org1', 'org2'],
+                event_history: [],
+                organization_names: [],
                 email_: email
               };
               
