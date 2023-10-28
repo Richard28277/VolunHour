@@ -80,7 +80,7 @@ img {
 
 @media screen and (max-width: 800px) {
   article {
-    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+    width: 90%; /* The width is 100%, when the viewport is 800px or smaller */
     margin-left:0.1px !important;
     margin-right: 0.1px !important;
     align-items: center;
