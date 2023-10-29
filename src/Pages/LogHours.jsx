@@ -32,7 +32,7 @@ const LogHours = () => {
       
       // Replace with the desired event name and hours
       const event_name = eventName;
-      const event_hours = parseInt(eventHours);
+      const event_hours = eventHours;
       const event_org = eventOrg;
       
       const response = await fetch('https://rich28277.pythonanywhere.com/api/loghours', {
