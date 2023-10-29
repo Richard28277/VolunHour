@@ -27,10 +27,6 @@ const Events = () => {
     });
   }, []);
 
-  const handleButtonClick = (eventLink) => {
-    setUrl(eventLink);
-  };
-
   return (
     <ul>
       {events.map((event) => (
@@ -43,7 +39,10 @@ const Events = () => {
           <p><strong>Description:</strong> {event.description}</p>
           <p><strong>Participants:</strong> {event.participants}</p>
           <p><strong>Organization:</strong> {event.organization}</p>
-          <button onClick={() => handleButtonClick(event.link)}>View Event</button>
+          <p><strong>Link:</strong> {event.link}</p>
+          <a href={event.link} target="_blank" rel="noopener noreferrer">
+            <button>View Event</button>
+          </a>
         </article>
       ))}
     </ul>
