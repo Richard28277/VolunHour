@@ -19,25 +19,26 @@ function App() {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-        console.log('user is logged in ');
+        console.log('user is logged in', user.email);
       } else {
         setUser(null);
         console.log('not logged in');
       }
     });
   }, []);
+
   return (
     <Router>
       <div className="App">
         <Menubar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/loghours/:eventName/:eventHours/:eventOrg" element={<Loghours />} />
-          <Route path="/create_event" element={<EventEntryForm />} />
+          <Route exact path="/" element={<Home authUser={user} />} />
+          <Route path="/register" element={<Register authUser={user} />} />
+          <Route path="/login" element={<Login authUser={user} />} />
+          <Route path="/dashboard" element={<Dashboard authUser={user} />} />
+          <Route path="/events" element={<Events authUser={user} />} />
+          <Route path="/loghours" element={<Loghours authUser={user} />} />
+          <Route path="/create_event" element={<EventEntryForm authUser={user} />} />
         </Routes>
         <Footer />
       </div>

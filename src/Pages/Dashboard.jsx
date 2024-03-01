@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { auth } from '../firebase';
 
-const Dashboard = () => {
+const Dashboard = ( {authUser} ) => {
   const [user, setUser] = useState(null);
   const [name, setName] = useState('');
   const [data, setData] = useState([]);
@@ -50,6 +50,7 @@ const Dashboard = () => {
           name: event.name,
           hours: event.hours,
           organization: event.organization,
+          contactEmail: event.contact_email,
         }));
 
         setData(eventHistory);
@@ -116,53 +117,61 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard">
+    <article>
       {user ? (
         <>
-          <h2>Welcome, {name}!</h2>
-          <div className="user-info">
+        <div className="dashboard-container">
+          <div className="card welcome-card">
+            <h2>Welcome, {name}!</h2>
+          </div>
+          <div className="card user-info-card">
             <h3>User Information</h3>
-            <p>
-              <strong>Name:</strong> {name}
-            </p>
-            <p>
-              <strong>Email:</strong> {user.email}
-            </p>
+            <p><strong>Name:</strong> {name}</p>
+            <p><strong>Email:</strong> {user.email}</p>
+          </div>
+          </div>
+          <div className="card event-info-card">
             <h3>Event Information</h3>
             <p>Total Hours: {totalHours}</p>
-            {data.length > 0 ? (
-              <table>
+            {data && data.length > 0 ? (
+              <div className="event-table-container">
+                <table>
                 <thead>
                   <tr>
                     <th>Organization</th>
                     <th>Event Name</th>
                     <th>Hours</th>
+                    <th>Contact Person</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.map((event) => (
-                    <tr key={event.id} className="table-row"> {/* Add a class to the table row */}
+                    <tr key={event.id} className="table-row fade-in"> {/* Add fade-in animation to each row */}
                       <td>{event.organization}</td>
                       <td>{event.name}</td>
                       <td>{event.hours} hours</td>
+                      <td>{event.contactEmail}</td>
                       <td>
-                        <button onClick={() => clearEvent(event.id)}>Delete</button>
+                        <button className="button-grow" onClick={() => clearEvent(event.id)}>Delete</button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+              </div>
             ) : (
               <p>No event data available.</p>
             )}
-            <button onClick={clearAllEvents}>Clear All Events</button>
+            <button className="clear-events-button" onClick={clearAllEvents}>Clear All Events</button>
           </div>
         </>
       ) : (
-        <p>Please sign in to view user information.</p>
+        <div className="card login-prompt-card">
+          <p>Please sign in to view user information.</p>
+        </div>
       )}
-    </div>
+    </article>
   );
 };
 

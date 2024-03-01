@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom'; // Import useLocation
 import { auth } from '../firebase';
 
 const LogHours = () => {
-  const { eventName, eventHours, eventOrg } = useParams();
+  // Assuming the data is passed as a query parameter now, not via useParams
+  const location = useLocation(); // Use useLocation to access query params
   const [user, setUser] = useState(null);
+  const [eventDetails, setEventDetails] = useState({
+    contactEmail: '',
+    eventName: '',
+    eventHours: '',
+    eventOrg: '',
+  });
+
+  // Helper function to parse query parameters
+  const parseQueryParams = (query) => {
+    return new URLSearchParams(query);
+  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -14,9 +26,21 @@ const LogHours = () => {
         setUser(null);
       }
     });
+  
+    // Decode the data parameter from the URL
+    const queryParams = parseQueryParams(location.search);
+    const dataParam = queryParams.get('data');
+    if (dataParam) {
+      const decodedString = atob(dataParam); // Decode the Base64 string
+      const [contactEmail, eventName, eventHours, eventOrg] = decodedString.split('/');
+      console.log(contactEmail, eventName, eventHours, eventOrg);
+      setEventDetails({ contactEmail, eventName, eventHours, eventOrg });
+    } else {
+      console.log('No data parameter found in the URL');
+    }
 
     return () => unsubscribe();
-  }, []);
+  }, [location.search]);
 
   async function logHours() {
     try {
@@ -26,8 +50,7 @@ const LogHours = () => {
       }
 
       const user_id_token = await user.getIdToken();
-      const event_name = eventName;
-      const event_org = eventOrg;
+      const { eventName, eventOrg, eventHours, contactEmail} = eventDetails;
       const event_hours = parseFloat(eventHours);
 
       const response = await fetch('https://rich28277.pythonanywhere.com/api/loghours', {
@@ -35,7 +58,7 @@ const LogHours = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ user_id: user_id_token, event_org, event_name, event_hours }),
+        body: JSON.stringify({ user_id: user_id_token, event_org: eventOrg, event_name: eventName, event_hours: event_hours, contact_email: contactEmail }),
       });
 
       if (response.ok) {
@@ -58,13 +81,16 @@ const LogHours = () => {
             User: <strong>{user.email}</strong>
           </p>
           <p>
-            Event Name: <strong>{eventName}</strong>
+            Event Name: <strong>{eventDetails.eventName}</strong>
           </p>
           <p>
-            Event Organization: <strong>{eventOrg}</strong>
+            Event Organization: <strong>{eventDetails.eventOrg}</strong>
           </p>
           <p>
-            Event Hours: <strong>{eventHours}</strong>
+            Event Hours: <strong>{eventDetails.eventHours}</strong>
+          </p>
+          <p>
+            Contact Person: <strong>{eventDetails.contactEmail}</strong>
           </p>
           <button onClick={logHours}>Log Hours</button>
         </>

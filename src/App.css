@@ -1,89 +1,213 @@
-body {
-  background:  #5596ff;
-}
+/* Reset some basic elements */  
+body, h1, h2, h3, p, ul, li, figure, figcaption {  
+  margin: 0;  
+  padding: 0;  
+  list-style: none;  
+}  
+  
+body {  
+  background: #2c3e50; /* Darker background color */  
+  font-family: Helvetica, 'Roboto', sans-serif; /* Updated modern font */  
+  color: #ecf0f1; /* Light text for visibility on a dark background */  
+  line-height: 1.6;  
+  padding: 20px;  
+}  
+  
+/* Modern and sleek container for the app */  
+.App {  
+  max-width: 1200px;  
+  margin: 0 auto;  
+  background: #34495e; /* Slightly lighter than body for contrast */  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */  
+  border-radius: 10px;  
+  overflow: hidden;  
+}  
+  
+.App-header {  
+  display: flex;  
+  justify-content: space-between;  
+  align-items: center;  
+  padding: 20px;  
+  background-color: #34495e; /* Match the App background */  
+  border-bottom: 1px solid #4b6584; /* Adjusted border color */  
+}  
+  
+.App-header ul {  
+  display: flex;  
+  list-style: none;  
+  margin: 0;  
+  padding: 0;  
+}  
+  
+.App-header li {  
+  margin-right: 15px;  
+}  
+  
+.App-header a {  
+  color: #4cd137; /* Bright accent color from the image */  
+  text-decoration: none;  
+  font-weight: 500;  
+  transition: color 0.3s ease;  
+}  
+  
+.App-header a:hover {  
+  color: #ffffff; /* Change color on hover */  
+}  
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-.App-header {
-  background-color: #ffffff;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  max-width:1000px;
-  padding: 15px;
-  margin: 10px auto;
-}
-
-.App-header ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-around;
-}
-
-.App-header li {
-  margin: 0;
-}
-
-.table-row {
-  border-bottom: 5px solid #ccc; /* Add the desired border style */
+/* Styling for authentication links */
+.auth-link {
+  font-weight: bold;
+  padding: 0.5rem 1rem;
   border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Additional styles for the login link */
+.logout {
+  background-color: #3498db; /* Blue color for login */
+  color: rgb(247, 247, 247) !important;
+}
+
+.logout:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Additional styles for the logout link */
+.login {
+  background-color: #2ac447; /* Red color for logout */
+  color: rgb(255, 255, 255) !important;
+}
+
+.login:hover {
+  background-color: #258722; /* Darker red on hover */
+}
+  
+.App-logo {  
+  height: 40vmin;  
+}  
+  
+article {  
+  padding: 20px;  
+  margin: 20px auto;  
+  background-color: #34495e; /* Consistent with the App background */  
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adjusted for depth */  
+  border-radius: 8px;  
+}  
+  
+button {  
+  background-color: #4cd137; /* Bright accent color for buttons */  
+  color: #ffffff;  
+  border: none;  
+  padding: 10px 20px;  
+  border-radius: 5px;  
+  cursor: pointer;  
+  transition: background-color 0.3s ease;  
+}  
+  
+button:hover {  
+  background-color: #44bd32; /* Darker shade for hover effect */  
+}  
+  
+img {  
+  max-width: 100%;  
+  height: auto;  
+  display: block;  
+  border-radius: 8px;  
+}  
+  
+/* Responsive design for smaller devices */  
+@media (max-width: 768px) {  
+  .App-header {  
+    flex-direction: column;  
+    align-items: center;  
+  }  
+  
+  .App-header ul {  
+    margin-top: 10px;  
+  }  
+  
+  .App-header li {   
+    margin-bottom: 10px;  
+  }  
+  
+  article {  
+    padding: 15px;  
+    margin: 15px;  
+  }  
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 2s;
+}
+
+.grow {
+  transition: transform 0.2s ease-in-out;
+}
+
+.grow:hover {
+  transform: scale(1.05);
+}
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px, auto));
+  padding: 20px;
+  gap: 20px;
+}
+
+.card {
+  background: #ffffff;
+  color:#2c3e50;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.event-table-container {
+  width: 100%; /* Set the width to 100% of its parent */
+  overflow-x: auto; /* Allows horizontal scrolling if the table is wider than the screen */
+}
+
+table {
+  width:100%; /* Set the width of the table to 100% of its container */
+  border-collapse: collapse; /* Collapse the borders of the table */
+  
+}
+
+th, td {
+  border: 1px solid #ddd; /* Example border for cells */
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2; /* Slightly different background for headers */
 }
 
 
-.App-header a {
-  color: #4286f4;
-  text-decoration: none;
-}
-
-h2 {
-  list-style-type: none;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-article {
-  margin-top: 10px;
-  align-items: center;
-  font-family: "Helvetica";
-  margin-left: 100px;
-  margin-right: 100px;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-}
-button {
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #00cc3a !important;
+.clear-events-button {
+  background-color: #ff4d4f;
   color: white;
   border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-  margin:5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-}
-button:hover {
-  background-color: #0077cc;
+  margin-top: 20px;
 }
 
-img {
-  border-radius: 25px; /* Add rounded corners */
-  user-select: none;
+.clear-events-button:hover {
+  background-color: #e33e41;
 }
 
-@media screen and (max-width: 800px) {
-  article {
-    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
-    margin-left:0.1px !important;
-    margin-right: 0.1px !important;
-    align-items: center;
-  }
-}
 

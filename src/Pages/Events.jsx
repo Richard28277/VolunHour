@@ -25,24 +25,26 @@ const Events = () => {
         fetchEvents();
       }
     });
+    return () => unsubscribe();
   }, []);
 
   return (
     <ul>
       {events.map((event) => (
-        <article key={event.id}>
+        <article key={event.id} className="fade-in">
           <h2>{event.name}</h2>
           <p><strong>VolunHour ID:</strong> {event.id}</p>
           <p><strong>Date:</strong> {event.date}</p>
           <p><strong>Time:</strong> {event.time}</p>
           <p><strong>Location:</strong> {event.location}</p>
           <p><strong>Description:</strong> {event.description}</p>
-          <p><strong>Participants:</strong> {event.participants}</p>
           <p><strong>Organization:</strong> {event.organization}</p>
+          <p><strong>Contact Person:</strong> {event.contact_email}</p>
           <p><strong>Link:</strong> {event.link}</p>
           <a href={event.link} target="_blank" rel="noopener noreferrer">
             <button>View Event</button>
           </a>
+          
         </article>
       ))}
     </ul>
