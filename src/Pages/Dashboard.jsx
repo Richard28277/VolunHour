@@ -55,7 +55,7 @@ const Dashboard = ( {authUser} ) => {
 
         setData(eventHistory);
 
-        const total = Object.values(jsonData.event_history || {}).reduce((total, event) => total + event.hours, 0);
+        const total = Math.round(Object.values(jsonData.event_history || {}).reduce((total, event) => total + event.hours, 0) * 10) / 10;
         setTotalHours(total);
       } else {
         throw new Error(`Error: ${response.status}`);

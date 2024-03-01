@@ -53,17 +53,24 @@ const EventEntryForm = () => {
     setEventDate(formattedDate);
   };
   
-  const formatURL = (link) => {  
-    const trimmedLink = link.trim();  
-    if (trimmedLink.startsWith('www.') && !trimmedLink.startsWith('http://') && !trimmedLink.startsWith('https://')) {  
-        return `http://${trimmedLink}`;  
-    }  
-    const protocol = trimmedLink.startsWith('http://') || trimmedLink.startsWith('https://') ? trimmedLink.substring(0, trimmedLink.indexOf('/', 7)) : '';  
-    if (!trimmedLink.endsWith('/')) {  
-        return `${protocol}${trimmedLink.endsWith('?') ? '' : '/'}${trimmedLink.replace(/\/$/, '')}`;  
-    }  
-    return trimmedLink;  
-};  
+  const formatURL = (link) => {
+    const trimmedLink = link.trim();
+    // Ensure protocol is https://, regardless of the initial URL format
+    let protocol = trimmedLink.startsWith('http://') || trimmedLink.startsWith('https://') ? '' : 'https://';
+    if (trimmedLink.startsWith('www.')) {
+        protocol = 'https://';
+    }
+    // Remove existing protocols for clean start
+    const noProtocolLink = trimmedLink.replace(/^http:\/\/|^https:\/\//, '');
+    // Determine the base of the URL before any slashes after the domain
+    const base = noProtocolLink.indexOf('/') !== -1 ? noProtocolLink.substring(0, noProtocolLink.indexOf('/')) : noProtocolLink;
+    // Extract the path, excluding the protocol and base
+    const path = noProtocolLink.indexOf('/') !== -1 ? noProtocolLink.substring(noProtocolLink.indexOf('/')) : '';
+    // Append a trailing slash if necessary, ignoring URLs ending with a query (?)
+    const formattedPath = path.endsWith('/') ? path : `${path}${path.endsWith('?') ? '' : '/'}`;
+    return `${protocol}${base}${formattedPath}`;
+  };
+
   const handleSubmit = () => {
     if (!user || !organization || !eventDate || !eventName || !eventHours || !eventLocation || !eventTime || !eventDescription) {
       console.log('All fields are required');
