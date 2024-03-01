@@ -92,6 +92,8 @@ article {
   background-color: #34495e; /* Consistent with the App background */  
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adjusted for depth */  
   border-radius: 8px;  
+  animation: fadeIn 0.3s ease-out;
+  transition: transform 0.2s ease;
 }  
   
 button {  
@@ -117,9 +119,13 @@ img {
   
 /* Responsive design for smaller devices */  
 @media (max-width: 768px) {  
+  .dashboard-container {
+    padding: 0 0 10px !important;
+  }
   .App-header {  
     flex-direction: column;  
     align-items: center;  
+    padding: 0px;
   }  
   
   .App-header ul {  
@@ -131,7 +137,7 @@ img {
   }  
   
   article {  
-    padding: 15px;  
+    padding: 1px;  
     margin: 15px;  
   }  
 }

@@ -5,7 +5,7 @@ import React from 'react';
 function Footer() {
   return (
     <footer>
-        <p> VolunHour v1.1.0 </p>
+        <p> VolunHour v1.1.1 </p>
     </footer>
   );
 }
