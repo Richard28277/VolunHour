@@ -53,6 +53,17 @@ const EventEntryForm = () => {
     setEventDate(formattedDate);
   };
   
+  const formatURL = (link) => {  
+    const trimmedLink = link.trim();  
+    if (trimmedLink.startsWith('www.') && !trimmedLink.startsWith('http://') && !trimmedLink.startsWith('https://')) {  
+        return `http://${trimmedLink}`;  
+    }  
+    const protocol = trimmedLink.startsWith('http://') || trimmedLink.startsWith('https://') ? trimmedLink.substring(0, trimmedLink.indexOf('/', 7)) : '';  
+    if (!trimmedLink.endsWith('/')) {  
+        return `${protocol}${trimmedLink.endsWith('?') ? '' : '/'}${trimmedLink.replace(/\/$/, '')}`;  
+    }  
+    return trimmedLink;  
+};  
   const handleSubmit = () => {
     if (!user || !organization || !eventDate || !eventName || !eventHours || !eventLocation || !eventTime || !eventDescription) {
       console.log('All fields are required');
@@ -73,7 +84,7 @@ const EventEntryForm = () => {
       date: convertDateFormat(eventDate),
       description: eventDescription,
       organization: organization,
-      link: eventLink ? eventLink : 'No link avaliable',
+      link: eventLink ? formatURL(eventLink) : 'No link avaliable',
       contact_email: user.email,
     };
     APIsync(eventData);
