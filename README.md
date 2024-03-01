@@ -1,6 +1,6 @@
 # VolunHour
 
-**Version**: 1.0.0
+**2023 Congressional App Challenge Project**
 
 **Author**: Richard Xu
 
