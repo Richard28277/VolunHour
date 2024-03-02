@@ -59,7 +59,7 @@ const EventEntryForm = () => {
   
   const isHoursFormatValid = (hours) => {
     const parsed = parseFloat(hours);
-    return !isNaN(parsed) && parsed.toString() === hours;
+    return !isNaN(parsed);
   };
   
   const formatURL = (link) => {
@@ -94,7 +94,7 @@ const EventEntryForm = () => {
     }
     // The event hours is in correct format
     if (!isHoursFormatValid(eventHours)) {
-      console.log('Event hours must be in hh:mm AM/PM format');
+      console.log('Event hours must be in number format');
       setIsValid(false); // Set isValid to false if hours format is incorrect
       return;
     }
