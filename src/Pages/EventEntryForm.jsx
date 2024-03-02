@@ -2,6 +2,7 @@ import QRCode from 'qrcode.react';
 import './EventEntryForm.css';
 import React, { useEffect, useState } from 'react';
 import { auth } from '../firebase';
+import Popup from '../Components/Popup';
 
 const EventEntryForm = () => {
   // Declare state hooks at the top level of the component
@@ -16,6 +17,9 @@ const EventEntryForm = () => {
   const [eventLink, setEventLink] = useState('');
   const [url, setUrl] = useState('');
   const [isValid, setIsValid] = useState(true); 
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+
 
   // Utility function for date sanitization
   const sanitizeDate = (date) => {
@@ -53,6 +57,11 @@ const EventEntryForm = () => {
     setEventDate(formattedDate);
   };
   
+  const isHoursFormatValid = (hours) => {
+    const parsed = parseFloat(hours);
+    return !isNaN(parsed) && parsed.toString() === hours;
+  };
+  
   const formatURL = (link) => {
     const trimmedLink = link.trim();
     // Ensure protocol is https://, regardless of the initial URL format
@@ -81,6 +90,12 @@ const EventEntryForm = () => {
     if (!isDateFormatValid(eventDate)) {
       console.log('Event date must be in mm/dd/yyyy format');
       setIsValid(false); // Set isValid to false if date format is incorrect
+      return;
+    }
+    // The event hours is in correct format
+    if (!isHoursFormatValid(eventHours)) {
+      console.log('Event hours must be in hh:mm AM/PM format');
+      setIsValid(false); // Set isValid to false if hours format is incorrect
       return;
     }
     // Prepare data to be sent to the API
@@ -118,7 +133,8 @@ const EventEntryForm = () => {
 
       if (response.ok) {
         console.log('Event added successfully');
-        // Optionally reset form fields here
+        setPopupMessage('Event uploaded to server. Make sure to save the event QR code or URL.');
+        setShowPopup(true);
       } else {
         throw new Error(`Failed to add event: ${response.status}`);
       }
@@ -133,7 +149,18 @@ const EventEntryForm = () => {
   return (
     <div className="event-entry-form">
       <h2>Event Entry Form</h2>
-      {!isValid && <p className="error-message">**Make sure all fields are in exact format**</p>}
+      {!isValid && (
+      <Popup
+        display={!isValid}
+        options={{
+          title: "Error!",
+          onConfirm: () => setIsValid(true),
+          onCancel: () => setIsValid(true),
+          confirmText: 'Close',
+        }}
+        context="Make sure all fields are in exact format"
+      />
+    )}
       <form>
         <label>Organization Name:</label>
         <input type="text" value={organization} onChange={(e) => setOrganization(e.target.value)} />
@@ -145,7 +172,7 @@ const EventEntryForm = () => {
         <label>Event Name:</label>
         <input type="text" value={eventName} onChange={(e) => setEventName(e.target.value)} />
 
-        <label>Volunteer Hours:</label>
+        <label>Volunteer Hours (Decimal Format):</label>
         <input type="text" value={eventHours} onChange={(e) => setEventHours(e.target.value)} />
 
         <label>Location:</label>
@@ -154,8 +181,8 @@ const EventEntryForm = () => {
         <label>Time:</label>
         <input type="text" value={eventTime} onChange={(e) => setEventTime(e.target.value)} />
 
-        <label>Description:</label>
-        <textarea value={eventDescription} onChange={(e) => setEventDescription(e.target.value)} />
+        <label>Description (250 letter limit):</label>
+        <textarea value={eventDescription} onChange={(e) => setEventDescription(e.target.value)} maxlength="250" />
 
         <label>Event Page URL link (Optional):</label>
         <input type="text" value={eventLink} onChange={(e) => setEventLink(e.target.value)} />
@@ -174,6 +201,18 @@ const EventEntryForm = () => {
           </div>
         </div>
       )}
+      {showPopup && (
+      <Popup
+        display={showPopup}
+        options={{
+          title: "Success!",
+          onConfirm: () => setShowPopup(false),
+          onCancel: () => setShowPopup(false),
+          confirmText: 'Close',
+        }}
+        context={<p>{popupMessage}</p>}
+      />
+    )}
     </div>
   );
 };

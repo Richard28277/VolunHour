@@ -140,6 +140,11 @@ img {
     padding: 1px;  
     margin: 15px;  
   }  
+
+  footer nav ul.footer-nav {
+    flex-direction: column; /* Stack items vertically on small screens */
+    align-items: center; /* Center items horizontally */
+  }
 }
 
 @keyframes fadeIn {
@@ -217,3 +222,64 @@ th {
 }
 
 
+/* Popup.css */
+.popup-overlay {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 0; /* Ensure it sits above other content */
+  display:flex;
+}
+
+.popup-content {
+  background-color: #34495e;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width:fit-content; /* Adjust based on your preference */
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 80vh; /* Adjust based on your preference, vh units ensure it's based on the viewport height */
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.popup-actions button {
+  margin-left: 10px;
+}
+
+footer nav ul.footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Display items in a row */
+  justify-content: left; /* Space items evenly */
+}
+
+footer nav ul.footer-nav li {
+  display: inline-block;
+}
+
+footer nav ul.footer-nav li a {
+  color: #ecf0f1; /* Light text color for visibility */
+  text-decoration: none; /* Remove underline */
+  padding: 10px; /* Add some padding for clickability */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+footer nav ul.footer-nav li a:hover {
+  color: #4cd137; /* Change color on hover */
+}
+
+footer {
+  margin: 10px;
+}
