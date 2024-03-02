@@ -66,31 +66,34 @@ const Dashboard = ( {authUser} ) => {
   }
 
   const clearEvent = async (eventId) => {
-    try {
-      const token = await auth.currentUser.getIdToken(/* forceRefresh */ true);
-      const response = await fetch('https://rich28277.pythonanywhere.com/api/clear_history', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user_id: token,
-          event_key: eventId,
-        }),
-      });
+    const confirmed = window.confirm('Are you sure you want to clear this event?');
+    if (confirmed) {
+      try {
+        const token = await auth.currentUser.getIdToken(/* forceRefresh */ true);
+        const response = await fetch('https://rich28277.pythonanywhere.com/api/clear_history', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: token,
+            event_key: eventId,
+          }),
+        });
 
-      if (response.ok) {
-        fetchData(); // Refresh the event data after clearing
-      } else {
-        throw new Error(`Error: ${response.status}`);
+        if (response.ok) {
+          fetchData(); // Refresh the event data after clearing
+        } else {
+          throw new Error(`Error: ${response.status}`);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   };
 
   const clearAllEvents = async () => {
-    const confirmed = window.confirm('Are you sure you want to clear all events?'); // Show confirmation dialog
+    const confirmed = window.confirm('Are you sure you want to clear all events? This action cannot be undone. '); // Show confirmation dialog
 
     if (confirmed) {
       try {

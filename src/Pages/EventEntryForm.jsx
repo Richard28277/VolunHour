@@ -158,7 +158,7 @@ const EventEntryForm = () => {
           onCancel: () => setIsValid(true),
           confirmText: 'Close',
         }}
-        context="Make sure all fields are in exact format"
+        context="Make sure all fields are in correct format"
       />
     )}
       <form>
