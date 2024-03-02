@@ -65,10 +65,7 @@ const EventEntryForm = () => {
   const formatURL = (link) => {
     const trimmedLink = link.trim();
     // Ensure protocol is https://, regardless of the initial URL format
-    let protocol = trimmedLink.startsWith('http://') || trimmedLink.startsWith('https://') ? '' : 'https://';
-    if (trimmedLink.startsWith('www.')) {
-        protocol = 'https://';
-    }
+    let protocol = 'https://';
     // Remove existing protocols for clean start
     const noProtocolLink = trimmedLink.replace(/^http:\/\/|^https:\/\//, '');
     // Determine the base of the URL before any slashes after the domain

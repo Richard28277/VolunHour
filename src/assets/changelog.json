@@ -1,12 +1,12 @@
 [
     {
         "version": "v1.2.0",
-        "date": "3/1/24",
+        "date": "3/1/2024",
         "description": "Added Release Notes, License, and About page. New popup UI. Optimized layout for mobile. "
     },
     {
         "version": "v1.1.0",
-        "date": "2/29/24",
+        "date": "2/29/2024",
         "description": "New UI for better user experience. Linked Event Entry to backend. "
     },
     {
