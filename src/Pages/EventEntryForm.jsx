@@ -106,8 +106,7 @@ const EventEntryForm = () => {
       date: convertDateFormat(eventDate),
       description: eventDescription,
       organization: organization,
-      link: eventLink ? formatURL(eventLink) : 'No link avaliable',
-      contact_email: user.email,
+      link: eventLink ? formatURL(eventLink) : 'No link avaliable'
     };
     APIsync(eventData);
     const sanitizedEventDate = sanitizeDate(eventDate);
@@ -186,7 +185,9 @@ const EventEntryForm = () => {
 
         <label>Event Page URL link (Optional):</label>
         <input type="text" value={eventLink} onChange={(e) => setEventLink(e.target.value)} />
-
+        
+        <p>The event QR code will contain your email for verification purposes. This will be visible to users who log your event. </p>
+        <p>Your email will not be public or shared otherwise.</p>
         <button type="button" onClick={handleSubmit}>Submit Event</button>
       </form>
 

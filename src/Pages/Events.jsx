@@ -39,7 +39,6 @@ const Events = () => {
           <p><strong>Location:</strong> {event.location}</p>
           <p><strong>Description:</strong> {event.description}</p>
           <p><strong>Organization:</strong> {event.organization}</p>
-          <p><strong>Contact Person:</strong> {event.contact_email}</p>
           <p><strong>Link:</strong> {event.link}</p>
           <a href={event.link} target="_blank" rel="noopener noreferrer">
             <button>View Event</button>
