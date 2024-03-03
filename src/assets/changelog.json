@@ -1,21 +1,21 @@
 [
     {
-        "version": "v1.3",
+        "version": "v1.3.0",
         "date": "3/3/2024",
         "description": "Added filter by organization feature for events tab. "
     },
     {
-        "version": "v1.2",
+        "version": "v1.2.0",
         "date": "3/1/2024",
         "description": "Added Release Notes, License, and About page. New popup UI. Optimized layout for mobile. "
     },
     {
-        "version": "v1.1",
+        "version": "v1.1.0",
         "date": "2/29/2024",
         "description": "New UI for better user experience. Linked Event Entry to backend. "
     },
     {
-        "version": "v1.0",
+        "version": "v1.0.0",
         "date": "10/28/2023",
         "description": "VolunHour app developed for the 2023 Congressional App Challenge."
     }
