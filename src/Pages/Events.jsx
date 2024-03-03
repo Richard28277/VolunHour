@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from '../firebase';
+import '../App.css';
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -17,10 +18,10 @@ const Events = () => {
     return () => unsubscribe();
   }, []); // Removed organizationFilter from dependency array
 
-  const fetchEvents = async (filter = '') => {
+  const fetchEvents = async () => {
     try {
-      // Adjusted to optionally use a filter
-      const url = `https://rich28277.pythonanywhere.com/api/events${filter ? `?organization=${filter}` : ''}`;
+      // Include the organization filter in the API call if it's not empty
+      const url = `https://rich28277.pythonanywhere.com/api/events${organizationFilter ? `?organization=${organizationFilter}` : ''}`;
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
@@ -43,10 +44,11 @@ const Events = () => {
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px'}}>
         <input
           type="text"
-          placeholder="Filter by organization..."
+          placeholder="Search by organization..."
           value={organizationFilter}
           onChange={(e) => setOrganizationFilter(e.target.value)}
-          style={{ marginRight: '10px' }} // Add some space between the input and the button
+          style={{ margin: '5px', maxWidth: "400px" }} // Add some space between the input and the button
+          onKeyDown={(e) => e.key === 'Enter' && handleFilterClick()} // Use onKeyDown to listen for Enter key
         />
         <button onClick={handleFilterClick} style={{ margin: '5px' }}>Filter</button>
       </div>

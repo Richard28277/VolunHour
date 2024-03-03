@@ -55,7 +55,7 @@ function Footer() {
     <footer>
       <nav>
         <ul className="footer-nav">
-          <li><a href="#!" onClick={(e) => { e.preventDefault(); handlePopup(renderReleaseNotes(), "Release Notes") }}>VolunHour v1.3.0 (Release Notes)</a></li>
+          <li><a href="#!" onClick={(e) => { e.preventDefault(); handlePopup(renderReleaseNotes(), "Release Notes") }}>VolunHour v1.3.1 (Release Notes)</a></li>
           <li><a href="#!" onClick={(e) => { e.preventDefault(); handlePopup(fetchLicenseContent, "License Information") }}>License</a></li>
           <li><a href="#!" onClick={(e) => { e.preventDefault(); handlePopup(renderAboutSection(), "About VolunHour") }}>About VolunHour</a></li>
         </ul>
