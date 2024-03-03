@@ -1,5 +1,10 @@
 [
     {
+        "version": "v1.3.0",
+        "date": "3/3/2024",
+        "description": "Added filter by organization feature for events tab. "
+    },
+    {
         "version": "v1.2.0",
         "date": "3/1/2024",
         "description": "Added Release Notes, License, and About page. New popup UI. Optimized layout for mobile. "
