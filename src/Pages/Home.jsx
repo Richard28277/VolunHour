@@ -28,9 +28,9 @@ class Home extends Component {
         <section className="fade-in">
           <h2>What we offer</h2>
           <ul>
-            <li>Connect with local organizations</li>
-            <li>Track your volunteer hours</li>
-            <li>Build your resume with valuable experience</li>
+            <li>Connect with local organizations.</li>
+            <li>Scan event QR codes to track volunteer hours.</li>
+            <li>Create and manage events effortlessly.</li>
           </ul>
         </section>
         
