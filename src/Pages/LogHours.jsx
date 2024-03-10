@@ -32,7 +32,7 @@ const LogHours = () => {
     const dataParam = queryParams.get('data');
     if (dataParam) {
       const decodedString = atob(dataParam); // Decode the Base64 string
-      const [contactEmail, eventName, eventHours, eventOrg] = decodedString.split('/');
+      const [contactEmail, eventName, eventHours, eventOrg] = decodedString.split('%20');
       console.log(contactEmail, eventName, eventHours, eventOrg);
       setEventDetails({ contactEmail, eventName, eventHours, eventOrg });
     } else {

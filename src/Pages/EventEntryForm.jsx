@@ -109,7 +109,7 @@ const EventEntryForm = () => {
     const sanitizedEventDate = sanitizeDate(eventDate);
     const formattedEventName = `${sanitizedEventDate} | ${eventName}`;
     // Prepare the data string
-    const dataString = `${user.email}/${formattedEventName}/${eventHours}/${organization}`;
+    const dataString = `${user.email}%20${formattedEventName}%20${eventHours}%20${organization}`;
     // Encode the data string using Base64
     const encodedData = btoa(dataString);
     // Use the encoded data in the URL
