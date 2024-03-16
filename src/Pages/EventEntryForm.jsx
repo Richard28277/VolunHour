@@ -3,6 +3,7 @@ import './EventEntryForm.css';
 import React, { useEffect, useState } from 'react';
 import { auth } from '../firebase';
 import Popup from '../Components/Popup';
+import sjcl from 'sjcl';
 
 const EventEntryForm = () => {
   // Declare state hooks at the top level of the component
@@ -111,11 +112,20 @@ const EventEntryForm = () => {
     // Prepare the data string
     const dataString = `${user.email}%20${formattedEventName}%20${eventHours}%20${organization}`;
     // Encode the data string using Base64
-    const encodedData = btoa(dataString);
+    const encodedData = encryptData(dataString, 'volunhour');
     // Use the encoded data in the URL
     const eventUrl = `https://volunhour.vercel.app/loghours?data=${encodedData}`;
     setUrl(eventUrl);
   };  
+
+  // Function to encrypt data
+  function encryptData(data, passphrase) {
+    // Encryption with automatic salt and IV generation
+    const encryptedData = sjcl.encrypt(passphrase, data);
+    console.log(encryptedData);
+    // The result is a JSON string that contains the ciphertext, salt, IV, and other parameters.
+    return encryptedData;
+  }
 
   const APIsync = async (data) => {
     try {

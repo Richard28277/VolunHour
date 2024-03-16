@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom'; // Import useLocation
 import { auth } from '../firebase';
+import sjcl from 'sjcl';
 
 const LogHours = () => {
   // Assuming the data is passed as a query parameter now, not via useParams
@@ -18,6 +19,14 @@ const LogHours = () => {
     return new URLSearchParams(query);
   };
 
+  // Function to decrypt data
+  function decryptData(encryptedData, passphrase) {
+    console.log(encryptedData);
+    // Decryption using the parameters stored in the encrypted data
+    const decryptedData = sjcl.decrypt(passphrase, encryptedData);
+    return decryptedData;
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -31,7 +40,7 @@ const LogHours = () => {
     const queryParams = parseQueryParams(location.search);
     const dataParam = queryParams.get('data');
     if (dataParam) {
-      const decodedString = atob(dataParam); // Decode the Base64 string
+      const decodedString = decryptData(dataParam, 'volunhour'); // Decode the Base64 string
       const [contactEmail, eventName, eventHours, eventOrg] = decodedString.split('%20');
       console.log(contactEmail, eventName, eventHours, eventOrg);
       setEventDetails({ contactEmail, eventName, eventHours, eventOrg });

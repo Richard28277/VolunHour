@@ -3,7 +3,7 @@ import { auth } from '../firebase';
 
 const Dashboard = ( {authUser} ) => {
   const [user, setUser] = useState(null);
-  const [name, setName] = useState('');
+  const [name, setName] = useState('(Loading...)');
   const [data, setData] = useState([]);
   const [totalHours, setTotalHours] = useState(0); // State for total hours
 
