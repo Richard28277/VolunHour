@@ -120,11 +120,10 @@ const EventEntryForm = () => {
 
   // Function to encrypt data
   function encryptData(data, passphrase) {
-    // Encryption with automatic salt and IV generation
     const encryptedData = sjcl.encrypt(passphrase, data);
-    console.log(encryptedData);
-    // The result is a JSON string that contains the ciphertext, salt, IV, and other parameters.
-    return encryptedData;
+    // Convert the encrypted JSON string to Base64 to ensure it's in a safe format for transmission/storage
+    const base64Encoded = btoa(encryptedData);
+    return base64Encoded;
   }
 
   const APIsync = async (data) => {

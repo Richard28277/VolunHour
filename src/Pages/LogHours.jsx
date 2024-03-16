@@ -21,9 +21,10 @@ const LogHours = () => {
 
   // Function to decrypt data
   function decryptData(encryptedData, passphrase) {
-    console.log(encryptedData);
-    // Decryption using the parameters stored in the encrypted data
-    const decryptedData = sjcl.decrypt(passphrase, encryptedData);
+    // Decode the Base64 string back to the encrypted JSON string
+    const decryptedDataJson = atob(encryptedData);
+    // Decrypt the data using the decoded JSON string
+    const decryptedData = sjcl.decrypt(passphrase, decryptedDataJson);
     return decryptedData;
   }
 
