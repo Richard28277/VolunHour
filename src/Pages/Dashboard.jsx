@@ -119,6 +119,40 @@ const Dashboard = ( {authUser} ) => {
     }
   };
 
+  const deleteAccount = async () => {
+    const confirmed = window.confirm('Are you sure you want to delete your account, including event history? This action cannot be undone.');
+    if (confirmed) {
+      try {
+        // Get the current user's ID token
+        const idToken = await auth.currentUser.getIdToken(/* forceRefresh */ true);
+  
+        // Send a DELETE request to your backend
+        const response = await fetch('https://rich28277.pythonanywhere.com/api/user', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: idToken,
+          }),
+        });
+  
+        const responseData = await response.json();
+  
+        if (response.ok) {
+          alert('Your account has been successfully deleted.');
+          window.location.href = '/login'; // Redirect to signup or login page
+        } else {
+          throw new Error(responseData.message || 'Failed to delete your account.');
+        }
+      } catch (error) {
+        console.error('Error deleting user account:', error);
+        alert(`Failed to delete your account. Please try again or contact support if the problem persists. Error: ${error.message}`);
+      }
+    }
+  };
+  
+
   return (
     <article>
       {user ? (
@@ -168,6 +202,7 @@ const Dashboard = ( {authUser} ) => {
               <p>No event data available.</p>
             )}
             <button className="clear-events-button" onClick={clearAllEvents}>Clear All Events</button>
+            <button className="clear-events-button" onClick={deleteAccount}>Delete Account (Permanent)</button>
           </div>
         </>
       ) : (

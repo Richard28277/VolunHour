@@ -2,7 +2,7 @@
     {
         "version": "v1.4.0",
         "date": "3/16/2024",
-        "description": "Added QR code display page. New QR code encryption for verification security. Added contact info."
+        "description": "Added QR code display page. New QR code encryption for verification security. Added account deletion. Added contact info."
     },
     {
         "version": "v1.3.0",
