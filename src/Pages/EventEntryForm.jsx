@@ -1,4 +1,3 @@
-import QRCode from 'qrcode.react';
 import './EventEntryForm.css';
 import React, { useEffect, useState } from 'react';
 import { auth } from '../firebase';
@@ -16,10 +15,7 @@ const EventEntryForm = () => {
   const [eventTime, setEventTime] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [eventLink, setEventLink] = useState('');
-  const [url, setUrl] = useState('');
   const [isValid, setIsValid] = useState(true); 
-  const [showPopup, setShowPopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState('');
 
 
   // Utility function for date sanitization
@@ -113,9 +109,19 @@ const EventEntryForm = () => {
     const dataString = `${user.email}%20${formattedEventName}%20${eventHours}%20${organization}`;
     // Encode the data string using Base64
     const encodedData = encryptData(dataString, 'volunhour');
-    // Use the encoded data in the URL
-    const eventUrl = `https://volunhour.vercel.app/loghours?data=${encodedData}`;
-    setUrl(eventUrl);
+    const qrData = {
+      name: eventName,
+      organization: organization,
+      hours: eventHours,
+      data: encodedData // Ensure the URL is encoded to be safely included in the query parameters
+    };
+    
+    // Construct a URL with query parameters for redirecting
+    const queryParams = new URLSearchParams(qrData).toString();
+    const redirectUrl = `/event-qr?${queryParams}`;
+  
+    // Use window.location for redirection
+    window.location.href = redirectUrl;
   };  
 
   // Function to encrypt data
@@ -138,8 +144,6 @@ const EventEntryForm = () => {
 
       if (response.ok) {
         console.log('Event added successfully');
-        setPopupMessage('Event uploaded to server. Make sure to save the event QR code or URL.');
-        setShowPopup(true);
       } else {
         throw new Error(`Failed to add event: ${response.status}`);
       }
@@ -147,9 +151,6 @@ const EventEntryForm = () => {
       console.error(error.message);
     }
   }
-  const handlePrintPage = () => {
-    window.print(); // Trigger the print dialog to print the entire page
-  };
 
   return (
     <div className="event-entry-form">
@@ -196,30 +197,6 @@ const EventEntryForm = () => {
         <p>Your email will not be public or shared otherwise.</p>
         <button type="button" onClick={handleSubmit}>Submit Event</button>
       </form>
-
-      {/* QR Code and Print button */}
-      {url && (
-        <div>
-          <p>Generated URL:</p>
-          <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
-          <div>
-            <QRCode value={url} size={256} />
-            <button type="button" onClick={handlePrintPage}>Print Page</button>
-          </div>
-        </div>
-      )}
-      {showPopup && (
-      <Popup
-        display={showPopup}
-        options={{
-          title: "Success!",
-          onConfirm: () => setShowPopup(false),
-          onCancel: () => setShowPopup(false),
-          confirmText: 'Close',
-        }}
-        context={<p>{popupMessage}</p>}
-      />
-    )}
     </div>
   );
 };

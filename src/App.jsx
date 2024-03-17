@@ -8,6 +8,7 @@ import Login from './Pages/Login.jsx';
 import Dashboard from './Pages/Dashboard.jsx';
 import Events from './Pages/Events.jsx';
 import Loghours from './Pages/LogHours.jsx';
+import EventQrPage from './Pages/EventQrPage.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { getAuth } from "firebase/auth";
 import EventEntryForm from './Pages/EventEntryForm';
@@ -39,6 +40,7 @@ function App() {
           <Route path="/events" element={<Events authUser={user} />} />
           <Route path="/loghours" element={<Loghours authUser={user} />} />
           <Route path="/create_event" element={<EventEntryForm authUser={user} />} />
+          <Route path="/event-qr" element={<EventQrPage authUser={user} />} />
         </Routes>
         <Footer />
       </div>

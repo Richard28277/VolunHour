@@ -30,6 +30,10 @@ textarea {
   border-radius: 5px;
 }
 
+.important-text {  
+  color: rgb(0, 0, 0);  
+}
+
 button {
   display: block;
   margin-top: 20px;
