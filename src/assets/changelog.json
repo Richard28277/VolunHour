@@ -1,5 +1,10 @@
 [
     {
+        "version": "v1.4.0",
+        "date": "3/16/2024",
+        "description": "Added contact page. Added encryption for event QR code information for enhanced security. "
+    },
+    {
         "version": "v1.3.0",
         "date": "3/3/2024",
         "description": "Added filter by organization feature for events tab. "

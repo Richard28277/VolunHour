@@ -55,9 +55,10 @@ function Footer() {
     <footer>
       <nav>
         <ul className="footer-nav">
-          <li><a href="#!" onClick={(e) => { e.preventDefault(); handlePopup(renderReleaseNotes(), "Release Notes") }}>VolunHour v1.3.2 (Release Notes)</a></li>
+          <li><a href="#!" onClick={(e) => { e.preventDefault(); handlePopup(renderReleaseNotes(), "Release Notes") }}>VolunHour v1.4.0 (Release Notes)</a></li>
           <li><a href="#!" onClick={(e) => { e.preventDefault(); handlePopup(fetchLicenseContent, "License Information") }}>License</a></li>
           <li><a href="#!" onClick={(e) => { e.preventDefault(); handlePopup(renderAboutSection(), "About VolunHour") }}>About VolunHour</a></li>
+          <li><a href="#!" onClick={(e) => { e.preventDefault(); handlePopup("Please email us at rich28277@gmail.com", "Contact Us") }}>Contact</a></li>
         </ul>
       </nav>
       <Popup

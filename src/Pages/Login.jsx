@@ -67,6 +67,7 @@ function Login() {
         <span>
           Don't have an account? <Link to="/register">Register</Link>
         </span>
+        <p>Forgot passward? Contact us to reset password. </p>
       </div>
     </div>
   );

@@ -131,6 +131,7 @@ const Dashboard = ( {authUser} ) => {
             <h3>User Information</h3>
             <p><strong>Name:</strong> {name}</p>
             <p><strong>Email:</strong> {user.email}</p>
+            <p>Note: To change account info, please contact us. </p>
           </div>
           </div>
           <div className="card event-info-card">
