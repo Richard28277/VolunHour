@@ -103,25 +103,6 @@ const EventEntryForm = () => {
       link: eventLink ? formatURL(eventLink) : 'No link avaliable'
     };
     APIsync(eventData);
-    const sanitizedEventDate = sanitizeDate(eventDate);
-    const formattedEventName = `${sanitizedEventDate} | ${eventName}`;
-    // Prepare the data string
-    const dataString = `${user.email}%20${formattedEventName}%20${eventHours}%20${organization}`;
-    // Encode the data string using Base64
-    const encodedData = encryptData(dataString, 'volunhour');
-    const qrData = {
-      name: eventName,
-      organization: organization,
-      hours: eventHours,
-      data: encodedData // Ensure the URL is encoded to be safely included in the query parameters
-    };
-    
-    // Construct a URL with query parameters for redirecting
-    const queryParams = new URLSearchParams(qrData).toString();
-    const redirectUrl = `/event-qr?${queryParams}`;
-  
-    // Use window.location for redirection
-    window.location.href = redirectUrl;
   };  
 
   // Function to encrypt data
@@ -144,6 +125,24 @@ const EventEntryForm = () => {
 
       if (response.ok) {
         console.log('Event added successfully');
+        const sanitizedEventDate = sanitizeDate(eventDate);
+        const formattedEventName = `${sanitizedEventDate} | ${eventName}`;
+        // Prepare the data string
+        const dataString = `${user.email}%20${formattedEventName}%20${eventHours}%20${organization}`;
+        // Encode the data string using Base64
+        const encodedData = encryptData(dataString, 'volunhour');
+        const qrData = {
+          name: eventName,
+          organization: organization,
+          hours: eventHours,
+          data: encodedData // Ensure the URL is encoded to be safely included in the query parameters
+        };
+        
+        // Construct a URL with query parameters for redirecting
+        const queryParams = new URLSearchParams(qrData).toString();
+        const redirectUrl = `/event-qr?${queryParams}`;
+        // Use window.location for redirection
+        window.location.href = redirectUrl;
       } else {
         throw new Error(`Failed to add event: ${response.status}`);
       }
